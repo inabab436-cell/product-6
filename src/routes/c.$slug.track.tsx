@@ -203,7 +203,7 @@ function MyOrder({ o }: { o: CustomerOrderDetail }) {
         <span className="store-label text-muted-foreground">{new Date(o.created_at).toLocaleDateString("ar-EG")}</span>
       </div>
       <p className="store-label mt-2 text-muted-foreground">عدد القطع: {count}</p>
-      <div className="mt-6"><OrderTimeline order={o as never} /></div>
+      <div className="mt-6"><OrderTimeline order={o} /></div>
       <ul className="mt-6 divide-y divide-border border-y border-border text-sm">
         {o.items.map((it, i) => (
           <li key={i} className="flex items-center justify-between gap-3 py-3">
