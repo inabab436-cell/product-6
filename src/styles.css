@@ -803,3 +803,11 @@
 @media (prefers-reduced-motion: reduce) {
   .store-chat-fab-ring { animation: none; }
 }
+
+/* Customer chat uses the storefront look */
+.store-chat .hub-bar { background: color-mix(in oklab, var(--background) 92%, transparent); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+.store-chat .hub-canvas, .store-chat { background: var(--background); }
+.store-chat :is(.rounded-full, .rounded-xl, .rounded-2xl, .rounded-lg, [class*="rounded-["]) { border-radius: 0 !important; }
+.store-chat .hub-card { border-radius: 0; box-shadow: none; border: 1px solid var(--border); }
+.store-chat .hub-display { font-family: "Bebas Neue", "Cairo", sans-serif; letter-spacing: .02em; }
+.store-chat .shadow-card { box-shadow: none; }
