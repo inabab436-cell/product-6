@@ -150,6 +150,14 @@ function BrandPageInner({ slug }: { slug: string }) {
         </div>
       </div>
 
+      <Link
+        to="/chat/$slug" params={{ slug }} search={{ mode: "continue" }}
+        aria-label="تواصل معنا"
+        className="store-chat-fab"
+      >
+        <span className="store-chat-fab-ring" aria-hidden />
+        <MessageSquare className="relative h-6 w-6" strokeWidth={1.75} />
+      </Link>
       <header className="sticky top-0 z-30 border-b border-border bg-background/90 backdrop-blur-md">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-3 sm:px-8">
           <nav className="hidden items-center gap-6 sm:flex">
@@ -176,13 +184,6 @@ function BrandPageInner({ slug }: { slug: string }) {
               className="grid h-10 w-10 place-items-center hover:bg-muted"
             >
               <UserCircle2 className="h-5 w-5" strokeWidth={1.5} />
-            </Link>
-            <Link
-              to="/chat/$slug" params={{ slug }} search={{ mode: "continue" }}
-              aria-label="المحادثة"
-              className="grid h-10 w-10 place-items-center hover:bg-muted"
-            >
-              <MessageSquare className="h-5 w-5" strokeWidth={1.5} />
             </Link>
             <button
               onClick={() => { void q.refetch(); setCartOpen(true); }}
