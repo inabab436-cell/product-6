@@ -178,13 +178,6 @@ function BrandPageInner({ slug }: { slug: string }) {
             >
               تتبع طلبي
             </Link>
-            <Link
-              to="/c/$slug/account" params={{ slug }}
-              aria-label={session.data?.loggedIn ? "حسابي" : "تسجيل الدخول"}
-              className="grid h-10 w-10 place-items-center hover:bg-muted"
-            >
-              <UserCircle2 className="h-5 w-5" strokeWidth={1.5} />
-            </Link>
             <button
               onClick={() => { void q.refetch(); setCartOpen(true); }}
               aria-label="السلة"

@@ -440,13 +440,6 @@ export function CustomerChat({
             </div>
           </div>
           <div className="flex shrink-0 items-center gap-1">
-            {loggedIn && !ownerPreview && (
-              <Button asChild variant="ghost" size="icon" className="rounded-full" title="حسابي">
-                <Link to="/c/$slug/account" params={{ slug }}>
-                  <UserCircle2 className="h-[18px] w-[18px]" />
-                </Link>
-              </Button>
-            )}
             {!embedded && (
               <Button asChild variant="ghost" size="icon" className="rounded-full" title="العودة للمتجر">
                 <Link to="/c/$slug" params={{ slug }}>
