@@ -420,8 +420,8 @@ export function CustomerChat({
   const notFound = storefront.data && !storefront.data.found;
   const products = storefront.data?.products ?? [];
   const shellClassName = embedded
-    ? "hub flex h-full min-h-0 flex-col overflow-hidden bg-background"
-    : "hub flex min-h-screen flex-col";
+    ? "hub store store-chat flex h-full min-h-0 flex-col overflow-hidden bg-background"
+    : "hub store store-chat flex min-h-screen flex-col";
 
   return (
     <div dir="rtl" className={shellClassName}>
@@ -489,9 +489,9 @@ export function CustomerChat({
         <div className="min-h-0 flex-1 space-y-3 overflow-y-auto py-2">
           {messages.length === 0 && !initErr && (
             <div className="grid place-items-center py-16 text-center">
-              <p className="hub-display text-lg">ابدأ المحادثة</p>
-              <p className="mt-1 max-w-xs text-sm leading-relaxed text-muted-foreground">
-                اسأل عن أي منتج أو سعر أو شحن — أو افتح «المنتجات» بالأسفل واختر ما يعجبك.
+              <p className="store-display text-4xl">ابدأ المحادثة</p>
+              <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                اسأل عن أي منتج أو سعر أو شحن.
               </p>
             </div>
           )}
@@ -541,23 +541,6 @@ export function CustomerChat({
               {locErr}
             </div>
           )}
-          <div className="hub-scroll-x mb-2 flex items-center gap-2">
-            {products.length > 0 && (
-              <Button
-                type="button"
-                variant="secondary"
-                size="sm"
-                className="shrink-0 gap-1.5 rounded-full"
-                onClick={() => setProductsOpen(true)}
-              >
-                <ShoppingBag className="h-3.5 w-3.5" />
-                المنتجات
-                <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold text-primary-foreground">
-                  {products.length}
-                </span>
-              </Button>
-            )}
-          </div>
           <div className="flex items-end gap-2 rounded-[1.5rem] border border-border bg-background p-2 shadow-card">
             <input
               ref={fileInputRef}
