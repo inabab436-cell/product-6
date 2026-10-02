@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { Camera, Copy, ImageIcon, Settings, Trash2 } from "lucide-react";
+import { Camera, Copy, ExternalLink, ImageIcon, Settings, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,33 +38,42 @@ function useSite() {
 /** Header identity: store logo, name and its public link (replaces the generic label). */
 export function SiteIdentity({ fallbackLogo }: { fallbackLogo: string }) {
   const { data: s } = useSite();
-  const live = s?.site_created && s.brand_slug;
-  const path = live ? `/c/${s!.brand_slug}` : null;
-  const host = typeof window !== "undefined" ? window.location.host : "";
-  const published = s?.site_status === "published";
 
   return (
     <div className="flex min-w-0 items-center gap-3">
       <img src={s?.logo_url || fallbackLogo} alt="" className="h-10 w-10 shrink-0 rounded-full border border-border object-cover" />
       <div className="min-w-0">
         <div className="truncate text-sm font-bold leading-tight">{s?.brand_name || "متجرك"}</div>
-        {path ? (
-          <div className="mt-0.5 flex min-w-0 items-center gap-1.5">
-            <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${published ? "bg-dashboard-green" : "bg-destructive"}`} />
-            <a href={path} target="_blank" rel="noopener noreferrer" dir="ltr"
-              className="truncate text-xs text-muted-foreground underline-offset-2 hover:text-foreground hover:underline">
-              {host}{path}
-            </a>
-            <button type="button" aria-label="نسخ الرابط" className="shrink-0 text-muted-foreground hover:text-foreground"
-              onClick={() => { navigator.clipboard?.writeText(`${window.location.origin}${path}`); toast.success("تم نسخ الرابط"); }}>
-              <Copy className="h-3.5 w-3.5" />
-            </button>
-          </div>
-        ) : (
-          <div className="text-xs text-muted-foreground">لوحة التحكم</div>
-        )}
+        <div className="text-xs text-muted-foreground">لوحة التحكم</div>
       </div>
     </div>
+  );
+}
+
+/** Clear card showing the store's public link with open + copy actions. */
+export function SiteLinkCard() {
+  const { data: s } = useSite();
+  if (!s?.site_created || !s.brand_slug) return null;
+  const path = `/c/${s.brand_slug}`;
+  const host = typeof window !== "undefined" ? window.location.host : "";
+  const published = s.site_status === "published";
+  return (
+    <section className="rounded-lg border border-border bg-card p-4 shadow-card">
+      <div className="mb-2 flex items-center gap-2 text-xs font-semibold text-muted-foreground">
+        <span className={`h-2 w-2 rounded-full ${published ? "bg-dashboard-green" : "bg-destructive"}`} />
+        {published ? "رابط متجرك — ظاهر للعملاء" : "رابط متجرك — غير منشور"}
+      </div>
+      <div className="flex items-center gap-2">
+        <code dir="ltr" className="min-w-0 flex-1 truncate rounded-md bg-muted px-3 py-2 text-xs">{host}{path}</code>
+        <Button type="button" size="sm" variant="outline" className="shrink-0 gap-1.5"
+          onClick={() => { navigator.clipboard?.writeText(`${window.location.origin}${path}`); toast.success("تم نسخ الرابط"); }}>
+          <Copy className="h-3.5 w-3.5" /> نسخ
+        </Button>
+        <Button asChild size="sm" className="shrink-0 gap-1.5">
+          <a href={path} target="_blank" rel="noopener noreferrer"><ExternalLink className="h-3.5 w-3.5" /> فتح</a>
+        </Button>
+      </div>
+    </section>
   );
 }
 

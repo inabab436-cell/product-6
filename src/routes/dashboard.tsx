@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { HubTabBar } from "@/components/hub/hub-shell";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import logo from "@/assets/cupai-logo.png.asset.json";
-import { SiteIdentity, SiteSettingsButton } from "@/components/website/site-link-bar";
+import { SiteIdentity, SiteSettingsButton, SiteLinkCard } from "@/components/website/site-link-bar";
 import {
   listNotifications, markNotificationRead, type NotificationRow, type NotificationType,
 } from "@/lib/notifications.functions";
@@ -131,6 +131,7 @@ function DashboardPage() {
         </header>
 
         <main className="mx-auto max-w-6xl space-y-7 px-4 py-6 sm:px-6 lg:py-8">
+          <SiteLinkCard />
           <section>
             <div className="mb-4">
               <p className="text-xs font-semibold text-primary">اليوم في متجرك</p>

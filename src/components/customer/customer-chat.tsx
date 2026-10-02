@@ -557,21 +557,6 @@ export function CustomerChat({
                 </span>
               </Button>
             )}
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="shrink-0 gap-1.5 rounded-full border-dashed"
-              onClick={() => void shareLocation(false)}
-              disabled={disabled || locBusy}
-            >
-              {locBusy ? (
-                <Loader2 className="h-3.5 w-3.5 animate-spin" />
-              ) : (
-                <MapPin className="h-3.5 w-3.5" />
-              )}
-              مشاركة موقعي
-            </Button>
           </div>
           <div className="flex items-end gap-2 rounded-[1.5rem] border border-border bg-background p-2 shadow-card">
             <input
